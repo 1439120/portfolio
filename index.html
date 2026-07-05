@@ -1,469 +1,531 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nkosana - (Portfolio)</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="mediaqueries.css" />
-  </head>
-  <body>
-    <nav id="desktop-nav">
-      <div class="logo">Nkosana Mabuza</div>
-      <div>
-        <ul class="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-    </nav>
-    <nav id="hamburger-nav">
-      <div class="logo">Nkosana Mabuza</div>
-      <div class="hamburger-menu">
-        <div class="hamburger-icon" onclick="toggleMenu()">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <div class="menu-links">
-          <li><a href="#about" onclick="toggleMenu()">About</a></li>
-          <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
-          <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-          <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
-        </div>
-      </div>
-    </nav>
-    <section id="profile">
-      <div class="section__pic-container">
-        <!-- <img src="./assets/profile-pic.png" alt="Nkosana profile" /> -->
-        <img src="./assets/profile-removebg2.png" style="border-radius: 200px;" alt="Nkosana profile" />
-      </div>
-      <div class="section__text">
-        <p class="section__text__p1">Hello, I'm</p>
-        <h1 class="title">Nkosana Mabuza</h1>
-        <p class="section__text__p2">Software Developer</p>
-        <div class="btn-container">
-          <button
-            class="btn btn-color-2"
-            onclick="window.open('./assets/resume-example.pdf')"
-          >
-            Download CV
-          </button>
-          <button class="btn btn-color-1" onclick="location.href='./#contact'">
-            Contact Info
-          </button>
-        </div>
-        <div id="socials-container">
-          <img
-            src="./assets/linkedin.png"
-            alt="My LinkedIn profile"
-            class="icon"
-            onclick="location.href='https://linkedin.com/'"
-          />
-          <img
-            src="./assets/github.png"
-            alt="My Github profile"
-            class="icon"
-            onclick="location.href='https://github.com/1439120'"
-          />
-        </div>
-      </div>
-    </section>
-    <section id="about">
-      <p class="section__text__p1">Get To Know More</p>
-      <h1 class="title">About Me</h1>
-      <div class="section-container">
-        <div class="section__pic-container">
-          <img
-            src="./assets/about-pic.png"
-            alt="Profile picture"
-            class="about-pic"
-          />
-        </div>
-        <div class="about-details-container">
-          <div class="about-containers">
-            <div class="details-container">
-              <img
-                src="./assets/experience.png"
-                alt="Experience icon"
-                class="icon"
-              />
-              <h3>Experience</h3>
-              <p>2+ years <br />Software Development</p>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nkosana Mabuza | Senior Software Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+        
+        :root {
+            --primary: 59 130 246;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .heading {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .hero-bg {
+            background: radial-gradient(at center bottom, rgb(15 23 42), rgb(2 6 23));
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+        }
+
+        .project-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
+        }
+
+        .tech-badge {
+            transition: all 0.3s ease;
+        }
+        
+        .tech-badge:hover {
+            transform: translateY(-2px) scale(1.05);
+            background-color: rgb(59 130 246);
+            color: white;
+        }
+
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: rgb(59 130 246);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+
+        .modal {
+            animation: modalPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        @keyframes modalPop {
+            0% { transform: scale(0.7); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-zinc-950 text-zinc-200">
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-50 border-b border-white/10 bg-zinc-950/80 backdrop-blur-lg">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 bg-blue-600 rounded-2xl flex items-center justify-center text-xl font-bold">NM</div>
+                <span class="text-2xl font-semibold heading tracking-tighter">Nkosana Mabuza</span>
             </div>
-            <div class="details-container">
-              <img
-                src="./assets/education.png"
-                alt="Education icon"
-                class="icon"
-              />
-              <h3>Education</h3>
-              <p>B.Sc.(Hons) Electrical Engineering</p>
+            
+            <div class="hidden md:flex items-center gap-10 text-sm font-medium">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#contact" class="nav-link">Contact</a>
             </div>
-          </div>
-          <div class="text-container">
-            <p>
-                I am an experienced software developer with a passion for crafting efficient and scalable solutions.
-                Some of my major tools are <b>Odoo</b>, <b>Flutter</b>, <b>Node.js</b> and <b>Android Studio</b>.
+
+            <div class="flex items-center gap-4">
+                <!-- <button onclick="toggleDarkMode()" class="p-3 hover:bg-white/10 rounded-2xl transition-colors">
+                    <i class="fas fa-moon text-xl"></i>
+                </button> -->
+                <a href="#" onclick="window.open('./assets/resume-example.pdf')" 
+                   class="px-6 py-3 bg-white text-black rounded-2xl font-semibold flex items-center gap-2 hover:bg-white/90 transition-all">
+                    <i class="fas fa-download"></i>
+                    <span>CV</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero-bg min-h-screen flex items-center pt-20 mt-5">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <div class="space-y-8" data-aos="fade-up">
+                <div class="inline-flex items-center gap-3 px-5 py-2.5 bg-white/5 border border-white/10 rounded-3xl text-sm">
+                    <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                    Available for opportunities
+                </div>
                 
-            </p>
-          </div>
+                <h1 class="text-7xl md:text-8xl font-bold heading tracking-tighter leading-none">
+                    Senior Software<br>Engineer
+                </h1>
+                
+                <p class="text-2xl text-zinc-400 max-w-lg">
+                    Building enterprise systems, AI-powered applications, and scalable SaaS platforms.
+                </p>
+                
+                <div class="flex items-center gap-4">
+                    <a href="#projects" 
+                       class="px-8 py-4 bg-blue-600 hover:bg-blue-700 rounded-3xl font-semibold text-lg transition-all flex items-center gap-3">
+                        View Projects
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#contact" 
+                       class="px-8 py-4 border border-white/30 hover:bg-white/5 rounded-3xl font-semibold text-lg transition-all">
+                        Let's Connect
+                    </a>
+                </div>
+
+                <div class="flex gap-8 pt-8">
+                    <div>
+                        <div class="text-4xl font-semibold">4+</div>
+                        <div class="text-zinc-400">Years Experience</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-semibold">15+</div>
+                        <div class="text-zinc-400">Projects Delivered</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-semibold">50+</div>
+                        <div class="text-zinc-400">ERP Modules</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative" data-aos="fade-left">
+                <div class="aspect-square w-full max-w-lg mx-auto">
+                    <div class="w-full h-full bg-gradient-to-br from-blue-600 via-purple-600 to-violet-600 rounded-[4rem] p-4 shadow-2xl">
+                        <img src="./assets/profile.png" 
+                             alt="Nkosana Mabuza" 
+                             class="w-full h-full object-cover rounded-[3rem] shadow-inner">
+                    </div>
+                </div>
+                
+                <!-- Floating badges -->
+                <div class="absolute -top-6 -left-6 glass px-6 py-3 rounded-3xl border border-white/10 flex items-center gap-3">
+                    <i class="fas fa-code text-2xl text-blue-400"></i>
+                    <div>
+                        <div class="font-semibold">Odoo Expert</div>
+                        <div class="text-xs text-zinc-400">4+ years</div>
+                    </div>
+                </div>
+                
+                <div class="absolute -bottom-6 -right-6 glass px-6 py-3 rounded-3xl border border-white/10">
+                    <div class="flex -space-x-4">
+                        <div class="w-9 h-9 bg-gradient-to-br from-pink-500 to-rose-500 rounded-2xl flex items-center justify-center text-xs font-bold border-2 border-zinc-950">AI</div>
+                        <div class="w-9 h-9 bg-gradient-to-br from-emerald-500 to-cyan-500 rounded-2xl flex items-center justify-center text-xs font-bold border-2 border-zinc-950">RN</div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='./#experience'"
-      />
+
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-xs tracking-widest">
+            <div class="animate-bounce">SCROLL</div>
+            <i class="fas fa-chevron-down"></i>
+        </div>
     </section>
-    <section id="experience">
-      <p class="section__text__p1">Explore My</p>
-      <h1 class="title">Experience</h1>
-      <div class="experience-details-container">
-        <div class="about-containers">
-          <div class="details-container">
-            <h2 class="experience-sub-title">Frontend Development</h2>
-            <div class="article-container">
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>HTML</h3>
-                  <p>Experienced</p>
+
+    <!-- About -->
+    <section id="about" class="py-28 bg-zinc-900">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="grid md:grid-cols-12 gap-16">
+                <div class="md:col-span-5" data-aos="fade-right">
+                    <h2 class="text-5xl font-semibold heading tracking-tighter mb-8">About Me</h2>
+                    <p class="text-zinc-300 text-lg leading-relaxed">
+                        Software engineer with 4+ years of experience designing and building enterprise systems, 
+                        ERP solutions, AI-powered applications, and cross-platform mobile apps. 
+                        I specialize in turning complex business requirements into scalable, maintainable software.
+                    </p>
                 </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>CSS</h3>
-                  <p>Experienced</p>
+                
+                <div class="md:col-span-7 space-y-8 text-zinc-300" data-aos="fade-left">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="space-y-6">
+                            <div>
+                                <div class="uppercase text-xs tracking-widest mb-3 text-blue-400">Specialties</div>
+                                <ul class="space-y-4">
+                                    <li class="flex items-start gap-3"><span class="text-emerald-400 mt-1">→</span> Enterprise Software Architecture</li>
+                                    <li class="flex items-start gap-3"><span class="text-emerald-400 mt-1">→</span> Odoo ERP Custom Development</li>
+                                    <li class="flex items-start gap-3"><span class="text-emerald-400 mt-1">→</span> AI &amp; Face Recognition Systems</li>
+                                    <li class="flex items-start gap-3"><span class="text-emerald-400 mt-1">→</span> Multi-tenant SaaS Platforms</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="space-y-6">
+                            <div>
+                                <div class="uppercase text-xs tracking-widest mb-3 text-blue-400">Currently Exploring</div>
+                                <div class="flex flex-wrap gap-3">
+                                    <span class="tech-badge text-sm px-4 py-2 bg-white/5 border border-white/10 rounded-2xl">LLM Integration</span>
+                                    <span class="tech-badge text-sm px-4 py-2 bg-white/5 border border-white/10 rounded-2xl">Advanced DevOps</span>
+                                    <span class="tech-badge text-sm px-4 py-2 bg-white/5 border border-white/10 rounded-2xl">Mobile-First ERP</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Bootstrap</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>JavaScript</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>TypeScript</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Material UI</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
             </div>
-          </div>
-          <div class="details-container">
-            <h2 class="experience-sub-title">Backend Development</h2>
-            <div class="article-container">
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>PostgreSQL</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Node JS</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Express JS</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>C/C++</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Java</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Python</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-            </div>
-          </div>
         </div>
-      </div>
-      <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='./#projects'"
-      />
     </section>
-    <section id="projects">
-      <p class="section__text__p1">Browse My Recent</p>
-      <h1 class="title">Projects</h1>
-      <div class="experience-details-container">
-        <div class="about-containers">
 
-          <div class="details-container color-container">
-            <div class="article-container">
-              <div class="slideshow-container">
-                <div class="slide fade project-1">
-                  <img src="/assets/chat_ui_1.png" style="width:100%">
-                </div>
-              
-                <div class="slide fade project-1">
-                  <img src="/assets/chat_ui_2.png" style="width:100%">
-                </div>
-
-                <div class="slide fade project-1">
-                  <img src="/assets/chat_ui_3.png" style="width:100%">
+    <!-- Skills -->
+    <section id="skills" class="py-28 bg-black">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-5xl font-semibold heading tracking-tighter text-center mb-16" data-aos="fade-up">Technical Expertise</h2>
+            
+            <div class="grid md:grid-cols-3 gap-12">
+                <!-- Languages -->
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-xl font-semibold mb-6 flex items-center gap-3"><i class="fas fa-code"></i> Languages</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="tech-badge px-5 py-3 bg-white/5 border border-white/10 rounded-3xl text-sm">Python</span>
+                        <span class="tech-badge px-5 py-3 bg-white/5 border border-white/10 rounded-3xl text-sm">TypeScript</span>
+                        <span class="tech-badge px-5 py-3 bg-white/5 border border-white/10 rounded-3xl text-sm">JavaScript</span>
+                        <span class="tech-badge px-5 py-3 bg-white/5 border border-white/10 rounded-3xl text-sm">C#</span>
+                        <span class="tech-badge px-5 py-3 bg-white/5 border border-white/10 rounded-3xl text-sm">C/C++</span>
+                    </div>
                 </div>
 
-                <div class="slide fade project-1">
-                  <img src="/assets/chat_ui_4.png" style="width:100%">
+                <!-- Frameworks -->
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-xl font-semibold mb-6 flex items-center gap-3"><i class="fas fa-layer-group"></i> Frameworks &amp; Tools</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="tech-badge px-5 py-3 bg-white/5 border border-white/10 rounded-3xl text-sm">Odoo</span>
+                        <span class="tech-badge px-5 py-3 bg-white/5 border border-white/10 rounded-3xl text-sm">Next.js</span>
+                        <span class="tech-badge px-5 py-3 bg-white/5 border border-white/10 rounded-3xl text-sm">.NET</span>
+                        <span class="tech-badge px-5 py-3 bg-white/5 border border-white/10 rounded-3xl text-sm">React Native</span>
+                        <span class="tech-badge px-5 py-3 bg-white/5 border border-white/10 rounded-3xl text-sm">Blazor</span>
+                        <span class="tech-badge px-5 py-3 bg-white/5 border border-white/10 rounded-3xl text-sm">Node.js</span>
+                        <span class="tech-badge px-5 py-3 bg-white/5 border border-white/10 rounded-3xl text-sm">Angular</span>
+                    </div>
                 </div>
 
-                <div class="slide fade project-1">
-                  <img src="/assets/chat_ui_5.png" style="width:100%">
+                <!-- Infrastructure -->
+                <div data-aos="fade-up" data-aos-delay="300">
+                    <h3 class="text-xl font-semibold mb-6 flex items-center gap-3"><i class="fas fa-server"></i> Infrastructure &amp; AI</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="tech-badge px-5 py-3 bg-white/5 border border-white/10 rounded-3xl text-sm">PostgreSQL</span>
+                        <span class="tech-badge px-5 py-3 bg-white/5 border border-white/10 rounded-3xl text-sm">Docker</span>
+                        <span class="tech-badge px-5 py-3 bg-white/5 border border-white/10 rounded-3xl text-sm">Nginx</span>
+                        <span class="tech-badge px-5 py-3 bg-white/5 border border-white/10 rounded-3xl text-sm">Linux Servers</span>
+                        <span class="tech-badge px-5 py-3 bg-white/5 border border-white/10 rounded-3xl text-sm">Face Recognition</span>
+                        <span class="tech-badge px-5 py-3 bg-white/5 border border-white/10 rounded-3xl text-sm">AI APIs</span>
+                    </div>
                 </div>
-                <!-- Add more slides as needed -->
-              
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
-              </div>
             </div>
-            <h2 class="experience-sub-title project-title">CHAT UI</h2>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Github
-              </button>
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Live Demo
-              </button>
-            </div>
-          </div>
-
-
-
-
-          <div class="details-container color-container">
-            <div class="article-container" style="height: 70%; width: 100%;">
-              <div class="slideshow-container" style="height: 80%;">
-                <div class="slide fade project-2" style="height: 100%; width: 100%;"> 
-                  <img src="/assets/netflix_clone_1.png" style="width:100%; height: 80%;">
-                </div>
-                <div class="slide fade project-2" style="height: 80%; width: 100%;">
-                  <img src="/assets/netflix_clone_2.png" style="width:100%;height: 100%;">
-                </div>
-                <div class="slide fade project-2" style="height: 80%; width: 100%;">
-                  <img src="/assets/netflix_clone_3.png" style="width:100%;height: 100%;">
-                </div>
-
-                <a class="prev" onclick="plusSlides2(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides2(1)">&#10095;</a>
-              </div>
-              <!-- <img
-                src="./assets/project-2.png"
-                alt="Project 2"
-                class="project-img"
-              /> -->
-            </div>
-            <h2 class="experience-sub-title project-title">Netflix Clone</h2>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Github
-              </button>
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Live Demo
-              </button>
-            </div>
-          </div>
-
-
-
-
-
-          <div class="details-container color-container">
-            <!-- <div class="article-container">
-              <img
-                src="./assets/project-3.png"
-                alt="Project 3"
-                class="project-img"
-              />
-            </div> -->
-            <div class="article-container"  style="height: 70%; width: 100%;">
-              <div class="slideshow-container" style="height: 80%;">
-                <div class="slide fade project-3"  style="height: 100%; width: 100%;">
-                  <img src="/assets/frostbite_1.png"  style="width:100%; height: 100%;">
-                </div>
-              
-                <div class="slide fade project-3"  style="height: 100%; width: 100%;">
-                  <img src="/assets/frostbite_2.png"  style="width:100%; height: 100%;">
-                </div>
-
-                <div class="slide fade project-3"  style="height: 100%; width: 100%;">
-                  <img src="/assets/frostbite_3.png"  style="width:100%; height: 100%;">
-                </div>
-
-                <div class="slide fade project-3"  style="height: 100%; width: 100%;">
-                  <img src="/assets/frostbite_4.png"  style="width:100%; height: 100%;">
-                </div>
-                <!-- Add more slides as needed -->
-              
-                <a class="prev" onclick="plusSlides3(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides3(1)">&#10095;</a>
-              </div>
-            </div>
-            <h2 class="experience-sub-title project-title">Frosbite</h2>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Github
-              </button>
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Live Demo
-              </button>
-            </div>
-          </div>
         </div>
-      </div>
-      <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='./#contact'"
-      />
     </section>
-    <section id="contact">
-      <p class="section__text__p1">Get in Touch</p>
-      <h1 class="title">Contact Me</h1>
-      <div class="contact-info-upper-container">
-        <div class="contact-info-container">
-          <img
-            src="./assets/email.png"
-            alt="Email icon"
-            class="icon contact-icon email-icon"
-          />
-          <p><a href="mailto:nkosana.mabuza2@gmail.com">nkosana.mabuza2@gmail.com</a></p>
+
+    <!-- Experience -->
+    <section id="experience" class="py-28 bg-zinc-900">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-5xl font-semibold heading tracking-tighter mb-16 text-center" data-aos="fade-up">Professional Journey</h2>
+            
+            <div class="space-y-12">
+                <div class="flex gap-8" data-aos="fade-up">
+                    <div class="w-32 text-right shrink-0">
+                        <div class="text-emerald-400 font-medium">2022 — Present</div>
+                        <div class="text-sm text-zinc-500">Kasune</div>
+                    </div>
+                    <div class="flex-1 border-l border-white/10 pl-8">
+                        <h3 class="text-2xl font-semibold">Software Developer</h3>
+                        <ul class="mt-6 space-y-4 text-zinc-300">
+                            <li class="flex gap-3"><span class="text-emerald-400">•</span> Led development of Kasune Nebula — multi-tenant SaaS ERP on Odoo 18</li>
+                            <li class="flex gap-3"><span class="text-emerald-400">•</span> Architected Performance Management System with real-time KPI tracking</li>
+                            <li class="flex gap-3"><span class="text-emerald-400">•</span> Designed and implemented Face Recognition Authentication system</li>
+                            <li class="flex gap-3"><span class="text-emerald-400">•</span> Built multiple financial modules including Loan &amp; Critical Planning systems</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="contact-info-container">
-          <img
-            src="./assets/linkedin.png"
-            alt="LinkedIn icon"
-            class="icon contact-icon"
-          />
-          <p><a href="https://www.linkedin.com">LinkedIn</a></p>
-        </div>
-      </div>
     </section>
-    <footer>
-      <nav>
-        <div class="nav-links-container">
-          <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
+
+    <!-- Projects -->
+    <section id="projects" class="py-28 bg-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-end mb-16">
+                <h2 class="text-5xl font-semibold heading tracking-tighter" data-aos="fade-up">Featured Projects</h2>
+                <a href="#" class="text-blue-400 hover:text-blue-300 flex items-center gap-2 group">
+                    View all on GitHub 
+                    <span class="group-hover:translate-x-1 transition">→</span>
+                </a>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="project-grid">
+                <!-- Projects populated by JS -->
+            </div>
         </div>
-      </nav>
-      <p>Copyright &#169; 2024 Nkosana Mabuza. All Rights Reserved.</p>
+    </section>
+
+    <!-- Stats -->
+    <section class="py-24 bg-zinc-900 border-t border-b border-white/10">
+        <div class="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div data-aos="zoom-in">
+                <div id="years" class="text-7xl font-bold text-blue-400">4</div>
+                <div class="text-zinc-400">Years Experience</div>
+            </div>
+            <div data-aos="zoom-in" data-aos-delay="100">
+                <div id="projects-count" class="text-7xl font-bold text-blue-400">15</div>
+                <div class="text-zinc-400">Enterprise Projects</div>
+            </div>
+            <div data-aos="zoom-in" data-aos-delay="200">
+                <div id="modules" class="text-7xl font-bold text-blue-400">50</div>
+                <div class="text-zinc-400">Custom Modules</div>
+            </div>
+            <div data-aos="zoom-in" data-aos-delay="300">
+                <div id="commits" class="text-7xl font-bold text-blue-400">280</div>
+                <div class="text-zinc-400">Git Commits</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-28 bg-zinc-950">
+        <div class="max-w-2xl mx-auto px-6 text-center">
+            <h2 class="text-5xl font-semibold heading tracking-tighter mb-8">Let's Build Something Great</h2>
+            <p class="text-xl text-zinc-400 mb-12">I'm currently open to new opportunities and interesting collaborations.</p>
+            
+            <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                <a href="mailto:your.email@example.com" 
+                   class="flex-1 sm:flex-none px-10 py-6 bg-white text-black rounded-3xl font-semibold flex items-center justify-center gap-3 hover:scale-105 transition">
+                    <i class="fas fa-envelope"></i>
+                    Send Email
+                </a>
+                <a href="https://linkedin.com" target="_blank"
+                   class="flex-1 sm:flex-none px-10 py-6 border border-white/30 rounded-3xl font-semibold flex items-center justify-center gap-3 hover:bg-white/5 transition">
+                    <i class="fab fa-linkedin"></i>
+                    LinkedIn
+                </a>
+            </div>
+            
+            <div class="mt-16 text-sm text-zinc-500">
+                Based in South Africa • Available for remote &amp; on-site opportunities
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/10 bg-black">
+        <div class="max-w-7xl mx-auto px-6 text-center text-xs text-zinc-500">
+            © 2026 Nkosana Mabuza. Crafted with passion.
+        </div>
     </footer>
-    <script src="script.js"></script>
-  </body>
+
+    <!-- Project Modal -->
+    <div id="project-modal" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-[100] p-4">
+        <div class="modal bg-zinc-900 max-w-3xl w-full rounded-3xl overflow-hidden">
+            <div class="p-8">
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <h3 id="modal-title" class="text-3xl font-semibold heading"></h3>
+                        <p id="modal-subtitle" class="text-zinc-400"></p>
+                    </div>
+                    <button onclick="closeModal()" class="text-3xl leading-none text-zinc-400 hover:text-white">×</button>
+                </div>
+                
+                <div id="modal-video" class="aspect-video bg-black rounded-2xl mb-8 overflow-hidden flex items-center justify-center">
+                    <!-- Video placeholder populated by JS -->
+                </div>
+                
+                <div id="modal-description" class="prose prose-invert max-w-none text-zinc-300"></div>
+            </div>
+            
+            <div class="border-t border-white/10 p-8 flex gap-4">
+                <button onclick="closeModal()" 
+                        class="flex-1 py-4 border border-white/30 rounded-2xl hover:bg-white/5">Close</button>
+                <a id="modal-github" href="#" target="_blank"
+                   class="flex-1 py-4 bg-white text-black rounded-2xl font-semibold flex items-center justify-center gap-3">
+                    <i class="fab fa-github"></i>
+                    View on GitHub
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            duration: 800
+        });
+
+        // Tailwind script already included
+
+        const projects = [
+            {
+                title: "Kasune Nebula",
+                subtitle: "Enterprise SaaS ERP Platform",
+                tech: ["Odoo 18", "Multi-tenant", "PostgreSQL"],
+                description: "A full-featured cloud ERP platform with subscription management, AI-ready architecture, and isolated tenant databases. Built with scalability and security as core principles.",
+                video: "https://assets.mixkit.co/videos/preview/754/754-small.mp4" // placeholder
+            },
+            {
+                title: "Performance Management System",
+                subtitle: "Real-time KPI Dashboard",
+                tech: ["Odoo", "React", "Charts"],
+                description: "Comprehensive performance tracking system featuring department dashboards, quarterly reports, target monitoring, and automated feedback workflows.",
+                video: "https://assets.mixkit.co/videos/preview/343/343-small.mp4"
+            },
+            {
+                title: "Face Authentication",
+                subtitle: "React Native + AI",
+                tech: ["React Native", "OpenCV", "Face Recognition"],
+                description: "Secure mobile authentication system using facial recognition with liveness detection, integrated into enterprise login flows.",
+                video: "https://assets.mixkit.co/videos/preview/123/123-small.mp4"
+            }
+        ];
+
+        function renderProjects() {
+            const container = document.getElementById('project-grid');
+            container.innerHTML = '';
+            
+            projects.forEach((project, index) => {
+                const card = document.createElement('div');
+                card.className = `project-card glass border border-white/10 rounded-3xl overflow-hidden cursor-pointer`;
+                card.innerHTML = `
+                    <div class="h-64 bg-zinc-800 relative">
+                        <img src="https://picsum.photos/id/${80 + index}/600/400" class="w-full h-full object-cover">
+                        <div class="absolute bottom-4 left-4 bg-black/70 px-4 py-1 rounded-2xl text-xs backdrop-blur">
+                            ${project.tech[0]}
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h4 class="font-semibold text-2xl heading mb-1">${project.title}</h4>
+                        <p class="text-zinc-400 mb-6">${project.subtitle}</p>
+                        <button onclick="showProject(${index}); event.stopImmediatePropagation();" 
+                                class="w-full py-4 border border-white/30 hover:bg-white/5 rounded-2xl text-sm font-medium transition">
+                            VIEW CASE STUDY
+                        </button>
+                    </div>
+                `;
+                card.onclick = () => showProject(index);
+                container.appendChild(card);
+            });
+        }
+
+        function showProject(index) {
+            const project = projects[index];
+            document.getElementById('modal-title').textContent = project.title;
+            document.getElementById('modal-subtitle').textContent = project.subtitle;
+            document.getElementById('modal-description').innerHTML = `<p>${project.description}</p>`;
+            
+            // Video
+            const videoContainer = document.getElementById('modal-video');
+            videoContainer.innerHTML = `
+                <video controls class="w-full h-full rounded-2xl" autoplay muted>
+                    <source src="${project.video}" type="video/mp4">
+                </video>
+            `;
+            
+            document.getElementById('project-modal').classList.remove('hidden');
+            document.getElementById('project-modal').classList.add('flex');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('project-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function downloadCV() {
+            alert("CV download would start here in a real implementation.\n\nYou can replace this with a direct link to your PDF.");
+        }
+
+        function toggleDarkMode() {
+            // Already dark by default - you can expand this for light mode if needed
+            alert("Dark theme is the default. Light mode toggle coming soon!");
+        }
+
+        // Initialize
+        window.onload = function() {
+            renderProjects();
+            
+            // Animate counters
+            setTimeout(() => {
+                animateValue('years', 0, 4, 1500);
+                animateValue('projects-count', 0, 15, 1800);
+                animateValue('modules', 0, 50, 2200);
+                animateValue('commits', 0, 280, 2500);
+            }, 1200);
+        };
+
+        function animateValue(id, start, end, duration) {
+            const obj = document.getElementById(id);
+            const range = end - start;
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * range + start);
+                obj.textContent = value + (id === 'commits' ? '+' : '');
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+    </script>
+</body>
 </html>
