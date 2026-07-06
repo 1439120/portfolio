@@ -100,7 +100,7 @@
                 <!-- <button onclick="toggleDarkMode()" class="p-3 hover:bg-white/10 rounded-2xl transition-colors">
                     <i class="fas fa-moon text-xl"></i>
                 </button> -->
-                <a href="#" onclick="window.open('./assets/resume-example.pdf')" 
+                <a href="#" onclick="window.open('./assets/my_cv.pdf')" 
                    class="px-6 py-3 bg-white text-black rounded-2xl font-semibold flex items-center gap-2 hover:bg-white/90 transition-all">
                     <i class="fas fa-download"></i>
                     <span>CV</span>
@@ -140,7 +140,7 @@
 
                 <div class="flex gap-8 pt-8">
                     <div>
-                        <div class="text-4xl font-semibold">4+</div>
+                        <div class="text-4xl font-semibold"><span class="years_exp">4</span>+</div>
                         <div class="text-zinc-400">Years Experience</div>
                     </div>
                     <div>
@@ -168,7 +168,7 @@
                     <i class="fas fa-code text-2xl text-blue-400"></i>
                     <div>
                         <div class="font-semibold">Odoo Expert</div>
-                        <div class="text-xs text-zinc-400">4+ years</div>
+                        <div class="text-xs text-zinc-400"><span class="years_exp">4</span>+ years</div>
                     </div>
                 </div>
                 
@@ -194,7 +194,7 @@
                 <div class="md:col-span-5" data-aos="fade-right">
                     <h2 class="text-5xl font-semibold heading tracking-tighter mb-8">About Me</h2>
                     <p class="text-zinc-300 text-lg leading-relaxed">
-                        Software engineer with 4+ years of experience designing and building enterprise systems, 
+                        Software engineer with <span class="years_exp">4</span>+ years of experience designing and building enterprise systems, 
                         ERP solutions, AI-powered applications, and cross-platform mobile apps. 
                         I specialize in turning complex business requirements into scalable, maintainable software.
                     </p>
@@ -323,7 +323,7 @@
     <section class="py-24 bg-zinc-900 border-t border-b border-white/10">
         <div class="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div data-aos="zoom-in">
-                <div id="years" class="text-7xl font-bold text-blue-400">4</div>
+                <div id="years" class="text-7xl font-bold text-blue-400"><span class="years_exp">4</span></div>
                 <div class="text-zinc-400">Years Experience</div>
             </div>
             <div data-aos="zoom-in" data-aos-delay="100">
@@ -406,6 +406,13 @@
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
+        const currentYear = new Date().getFullYear(); 
+        const experience = currentYear - 2021
+        // document.getElementById("years_exp").innerHTML = `${currentYear - 2022}+ years` 
+        Array.from(document.getElementsByClassName("years_exp")).forEach((item) => {
+            item.innerHTML = experience;
+        });
+        // document.getElementById("years_exp_1").innerHTML = `${currentYear - 2022}+` 
         AOS.init({
             once: true,
             duration: 800
@@ -504,7 +511,7 @@
             
             // Animate counters
             setTimeout(() => {
-                animateValue('years', 0, 4, 1500);
+                animateValue('years', 0, experience, 1500);
                 animateValue('projects-count', 0, 15, 1800);
                 animateValue('modules', 0, 50, 2200);
                 animateValue('commits', 0, 280, 2500);
