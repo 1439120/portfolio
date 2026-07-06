@@ -84,7 +84,13 @@
     <nav class="fixed top-0 w-full z-50 border-b border-white/10 bg-zinc-950/80 backdrop-blur-lg">
         <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <div class="w-9 h-9 bg-blue-600 rounded-2xl flex items-center justify-center text-xl font-bold">NM</div>
+                <!-- <div class="w-9 h-9 bg-blue-600 rounded-2xl flex items-center justify-center text-xl font-bold">NM</div> -->
+                <button onclick="openAvatarModal()" 
+                        class="w-10 h-10 rounded-full overflow-hidden border-2 border-blue-600 hover:scale-105 transition-transform duration-200 focus:outline-none"
+                        aria-label="View profile picture">
+                    <!-- Replace 'profile.jpg' with your actual image path -->
+                    <img id="profile-avatar" src="/assets/profile-removebg2.png" alt="Nkosana Mabuza" class="w-full h-full object-cover">
+                </button>
                 <span class="text-2xl font-semibold heading tracking-tighter">Nkosana Mabuza</span>
             </div>
             
@@ -307,7 +313,7 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex justify-between items-end mb-16">
                 <h2 class="text-5xl font-semibold heading tracking-tighter" data-aos="fade-up">Featured Projects</h2>
-                <a href="#" class="text-blue-400 hover:text-blue-300 flex items-center gap-2 group">
+                <a href="https://github.com/1439120" class="text-blue-400 hover:text-blue-300 flex items-center gap-2 group">
                     View all on GitHub 
                     <span class="group-hover:translate-x-1 transition">→</span>
                 </a>
@@ -404,44 +410,76 @@
         </div>
     </div>
 
+    <!-- Avatar modal -->
+    <div id="avatar-modal" 
+        class="hidden fixed inset-0 z-50 bg-black/90 items-center justify-center p-4 backdrop-blur-sm animate-fade-in"
+        onclick="closeAvatarModal()">
+        
+        <!-- Close Button -->
+        <button class="absolute top-6 right-6 text-white text-3xl hover:text-gray-300 focus:outline-none">
+            <i class="fas fa-times"></i>
+        </button>
+        
+        <!-- Frame Container -->
+        <div class="relative max-w-2xl max-h-[80vh] bg-neutral-900 p-2 rounded-2xl border border-white/10 shadow-2xl" 
+            onclick="event.stopPropagation()"> <!-- Prevents closing when clicking the image frame itself -->
+            <img id="modal-large-img" src="" alt="Nkosana Mabuza Large" class="max-w-full max-h-[75vh] rounded-xl object-contain">
+        </div>
+    </div>
+
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        const currentYear = new Date().getFullYear(); 
-        const experience = currentYear - 2021
-        // document.getElementById("years_exp").innerHTML = `${currentYear - 2022}+ years` 
-        Array.from(document.getElementsByClassName("years_exp")).forEach((item) => {
-            item.innerHTML = experience;
-        });
-        // document.getElementById("years_exp_1").innerHTML = `${currentYear - 2022}+` 
         AOS.init({
             once: true,
             duration: 800
         });
-
         // Tailwind script already included
 
         const projects = [
             {
-                title: "Kasune Nebula",
-                subtitle: "Enterprise SaaS ERP Platform",
-                tech: ["Odoo 18", "Multi-tenant", "PostgreSQL"],
-                description: "A full-featured cloud ERP platform with subscription management, AI-ready architecture, and isolated tenant databases. Built with scalability and security as core principles.",
-                video: "https://assets.mixkit.co/videos/preview/754/754-small.mp4" // placeholder
-            },
-            {
-                title: "Performance Management System",
-                subtitle: "Real-time KPI Dashboard",
-                tech: ["Odoo", "React", "Charts"],
-                description: "Comprehensive performance tracking system featuring department dashboards, quarterly reports, target monitoring, and automated feedback workflows.",
-                video: "https://assets.mixkit.co/videos/preview/343/343-small.mp4"
-            },
-            {
                 title: "Face Authentication",
                 subtitle: "React Native + AI",
-                tech: ["React Native", "OpenCV", "Face Recognition"],
+                tech: ["React Native", "Google ML Kit", "Face Recognition", "PostgreSQL"],
                 description: "Secure mobile authentication system using facial recognition with liveness detection, integrated into enterprise login flows.",
-                video: "https://assets.mixkit.co/videos/preview/123/123-small.mp4"
-            }
+                video: "/assets/face_auth_record.mp4",
+                github: "https://github.com/1439120/TimesheetFaceApp",
+                profile: "/assets/faceauth_profile.jpeg",
+            },
+            {
+                title: "School Management System",
+                subtitle: "Full-Stack appliaction",
+                tech: ["Angular", ".NET", "SCSS","C#"],
+                description: "Comprehensive school administration platform designed to manage student records, scheduling, and grading. Features a responsive frontend portal paired with a robust relational data architecture.",
+                video: "https://assets.mixkit.co/videos/preview/754/754-small.mp4", // placeholder
+                github: "https://github.com/1439120/highschool-ms",
+                profile: "https://picsum.photos/id/81/600/400",
+            },
+            {
+                title: "Loan Management System",
+                subtitle: "Finance",
+                tech: ["Blazor", ".NET", "Charts","Firestore","Firebase"],
+                description: "Comprehensive performance tracking system featuring department dashboards, quarterly reports, target monitoring, and automated feedback workflows.",
+                video: "https://assets.mixkit.co/videos/preview/343/343-small.mp4",
+                github: "https://github.com/1439120/rocksolid",
+                profile: "https://picsum.photos/id/82/600/400",
+            },{
+                title: "Wordle",
+                subtitle: "Web Application",
+                tech: ["React", ".NET", "Charts","Firestore","Firebase"],
+                description: "Comprehensive performance tracking system featuring department dashboards, quarterly reports, target monitoring, and automated feedback workflows.",
+                video: "https://assets.mixkit.co/videos/preview/343/343-small.mp4",
+                github: "https://github.com/1439120/WORDLE",
+                profile: "https://picsum.photos/id/83/600/400",
+            },{
+                title: "Frostbite",
+                subtitle: "Web Application",
+                tech: ["SFML", ".NET", "Charts","Firestore","Firebase"],
+                description: "Comprehensive performance tracking system featuring department dashboards, quarterly reports, target monitoring, and automated feedback workflows.",
+                video: "https://assets.mixkit.co/videos/preview/343/343-small.mp4",
+                github: "https://github.com/1439120/frostbite",
+                profile: "https://picsum.photos/id/84/600/400",
+            },
+            
         ];
 
         function renderProjects() {
@@ -453,7 +491,7 @@
                 card.className = `project-card glass border border-white/10 rounded-3xl overflow-hidden cursor-pointer`;
                 card.innerHTML = `
                     <div class="h-64 bg-zinc-800 relative">
-                        <img src="https://picsum.photos/id/${80 + index}/600/400" class="w-full h-full object-cover">
+                        <img src="${project.profile}" class="w-full h-full object-cover">
                         <div class="absolute bottom-4 left-4 bg-black/70 px-4 py-1 rounded-2xl text-xs backdrop-blur">
                             ${project.tech[0]}
                         </div>
@@ -488,6 +526,7 @@
             
             document.getElementById('project-modal').classList.remove('hidden');
             document.getElementById('project-modal').classList.add('flex');
+            document.getElementById("modal-github").href = project.github
         }
 
         function closeModal() {
@@ -508,6 +547,14 @@
         // Initialize
         window.onload = function() {
             renderProjects();
+            const currentYear = new Date().getFullYear(); 
+            const experience = currentYear - 2022
+            // document.getElementById("years_exp").innerHTML = `${currentYear - 2022}+ years` 
+            Array.from(document.getElementsByClassName("years_exp")).forEach((item) => {
+                item.innerHTML = experience;
+            });
+            // document.getElementById("years_exp_1").innerHTML = `${currentYear - 2022}+` 
+            
             
             // Animate counters
             setTimeout(() => {
@@ -533,6 +580,36 @@
             };
             window.requestAnimationFrame(step);
         }
+
+        function openAvatarModal() {
+            const avatarImg = document.getElementById('profile-avatar');
+            const modalImg = document.getElementById('modal-large-img');
+            const avatarModal = document.getElementById('avatar-modal');
+            
+            if (avatarImg && modalImg && avatarModal) {
+                // Sync the large frame image source with your avatar source
+                modalImg.src = avatarImg.src;
+                
+                // Show modal using Tailwind flex utility
+                avatarModal.classList.remove('hidden');
+                avatarModal.classList.add('flex');
+                
+                // Disable page scrolling behind the modal
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeAvatarModal() {
+            const avatarModal = document.getElementById('avatar-modal');
+            if (avatarModal) {
+                avatarModal.classList.remove('flex');
+                avatarModal.classList.add('hidden');
+                
+                // Restore page scrolling
+                document.body.style.overflow = 'auto';
+            }
+        }
+
     </script>
 </body>
 </html>
