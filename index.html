@@ -441,7 +441,7 @@
                 subtitle: "React Native + AI",
                 tech: ["React Native", "Google ML Kit", "Face Recognition", "PostgreSQL"],
                 description: "Secure mobile authentication system using facial recognition with liveness detection, integrated into enterprise login flows.",
-                video: "./assets/face_auth_record.mp4",
+                video: "https://drive.google.com/file/d/1IIJJ3PPUapHwCXxY2VWeWpywjWpoa2_3/preview",
                 github: "https://github.com/1439120/TimesheetFaceApp",
                 profile: "./assets/faceauth_profile.jpeg",
             },
@@ -450,7 +450,7 @@
                 subtitle: "Full-Stack appliaction",
                 tech: ["Angular", ".NET", "SCSS","C#"],
                 description: "Comprehensive school administration platform designed to manage student records, scheduling, and grading. Features a responsive frontend portal paired with a robust relational data architecture.",
-                video: "./assets/highschoolms.mp4",
+                video: "https://drive.google.com/file/d/1yOo1sCf3y6EhQVDGzEus3EQ0YjUX2V8Q/preview",
                 github: "https://github.com/1439120/highschool-ms",
                 profile: "./assets/highschoolms-profile.png",
             },
@@ -459,7 +459,7 @@
                 subtitle: "Finance",
                 tech: ["Blazor", ".NET", "Charts","Firestore","Firebase"],
                 description: "Enterprise loan management solution designed to streamline the entire lending lifecycle, including customer management, loan approvals, repayment monitoring, financial reporting, and workflow automation.",
-                video: "./assets/loanmng.mp4",
+                video: "https://drive.google.com/file/d/1Jvw_TfTbZRCaDgD-vAlQDArSUisiPeUu/preview",
                 github: "https://github.com/1439120/rocksolid",
                 profile: "./assets/loanmg-profile.png",
             },{
@@ -467,7 +467,7 @@
                 subtitle: "Web Application",
                 tech: ["React", ".NET", "Charts","Firestore","Firebase"],
                 description: "A modern Wordle-inspired game built with React, featuring six-attempt gameplay, streak tracking, detailed statistics, responsive design, keyboard shortcuts, and persistent local storage.",
-                video: "./assets/wordle.mp4",
+                video: "https://drive.google.com/file/d/15ljbSL3OoHLc0GyAJeIOY3elv8CBYJnu/preview",
                 github: "https://github.com/1439120/WORDLE",
                 profile: "./assets/wordle-profile.png",
             },{
@@ -475,7 +475,7 @@
                 subtitle: "Desktop Application",
                 tech: ["SFML", ".NET", "Charts","Firestore","Firebase"],
                 description: "Comprehensive arcade survival system featuring dynamic ice floe layout generation, real-time score and level trackers, personal best saving, and responsive grid-based collision mechanics.",
-                video: "./assets/frostbite.mp4",
+                video: "https://drive.google.com/file/d/1IeuNFuyWKIAN7yXb9P5Moe5QMHxQrcEk/preview",
                 github: "https://github.com/1439120/frostbite",
                 profile: "./assets/frostbite-profile.png",
             },
@@ -519,9 +519,12 @@
             // Video
             const videoContainer = document.getElementById('modal-video');
             videoContainer.innerHTML = `
-                <video controls class="w-full h-full rounded-2xl" autoplay muted>
-                    <source src="${project.video}" type="video/mp4">
-                </video>
+                <iframe 
+                    src="${project.video}" 
+                    class="w-full h-full rounded-2xl" 
+                    allow="autoplay"
+                    frameborder="0"
+                ></iframe>
             `;
             
             document.getElementById('project-modal').classList.remove('hidden');
